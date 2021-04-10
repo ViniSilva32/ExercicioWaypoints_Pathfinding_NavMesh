@@ -41,6 +41,12 @@ public class FOLLOWPATH : MonoBehaviour
         g.AStar(currentNode, wps[3]);
         currentWP = 0;
     }
+    //indica a posição de Marte
+    public void GoToMarte()
+    {
+        g.AStar(currentNode, wps[4]);
+        currentWP = 0;
+    }
     // Update is called once per frame
     void LateUpdate()
     {   //retorna as informações recebidas pelo currentWP
