@@ -4,52 +4,59 @@ using UnityEngine;
 
 public class FOLLOWPATH : MonoBehaviour
 {
-    Transform Goal;
+    //Transform Goal;
     //determina a velocidade de movimento do BOT
-    float speed = 5.0f;
+    //float speed = 5.0f;
     //determina a precisão do movimento do BOT
-    float accuracy = 3.0f;
+    //float accuracy = 3.0f;
     //determina a velocidade do movimento de rotação do BOT
-    float rotSpeed = 2.0f;
+    //float rotSpeed = 2.0f;
 
     //referencia o WPMANAGER
     public GameObject wpManager;
     GameObject[] wps;
-    GameObject currentNode;
-    int currentWP = 0;
-    Graph g;
+    UnityEngine.AI.NavMeshAgent agent;
+    // GameObject currentNode;
+    //  int currentWP = 0;
+    // Graph g;
 
     // Start is called before the first frame update
     void Start()
     {   //pegam os componentes waypoints e graph que estão no FOLLOWPATH e atribui ao wps e ao g.
         wps = wpManager.GetComponent<WPMANAGER>().waypoints;
-        g = wpManager.GetComponent<WPMANAGER>().graph;
+        agent = this.GetComponent<UnityEngine.AI.NavMeshAgent>();
+        //g = wpManager.GetComponent<WPMANAGER>().graph;
         //lista onde o wps inicia em 0.
-        currentNode = wps[0];
+        //currentNode = wps[0];
     }
 
     //indica a posição do Heli
     public void GoToVenus()
     {
-        g.AStar(currentNode, wps[0]);
-        currentWP = 0;
+        agent.SetDestination(wps[0].transform.position);
+        /*g.AStar(currentNode, wps[0]);
+        currentWP = 0;*/
     }
 
     //indica a posição das Ruins
     public void GoToPlutao()
     {
-        g.AStar(currentNode, wps[3]);
-        currentWP = 0;
+        agent.SetDestination(wps[3].transform.position);
+        /*g.AStar(currentNode, wps[3]);
+        currentWP = 0;*/
     }
     //indica a posição de Marte
     public void GoToMarte()
     {
-        g.AStar(currentNode, wps[4]);
-        currentWP = 0;
+        agent.SetDestination(wps[4].transform.position);
+        /*g.AStar(currentNode, wps[4]);
+        currentWP = 0;*/
     }
-    // Update is called once per frame
+
     void LateUpdate()
-    {   //retorna as informações recebidas pelo currentWP
+    {
+        /* codigo usado para Waypoint
+        //retorna as informações recebidas pelo currentWP
         if (g.getPathLength() == 0 || currentWP == g.getPathLength())
             return;
 
@@ -72,6 +79,6 @@ public class FOLLOWPATH : MonoBehaviour
 
             }
             //altera a direção do BOT
-            transform.Translate(0, 0, speed * Time.deltaTime);
+            transform.Translate(0, 0, speed * Time.deltaTime);*/
     }
 }
